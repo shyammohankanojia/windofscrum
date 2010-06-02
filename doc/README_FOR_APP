@@ -1,0 +1,22 @@
+******************
+* WINDS OF SCRUM *
+******************
+
+Alternative Migrations
+----------------------
+As migrations won't be used until project arrives to its first 1.0 release this is 
+an alternative to migrations:
+
+* To update from alpha2 to alpha3
+alter table projects add column users varchar(255);
+alter table projects add column stakeholders varchar (255);
+alter table projects add column managers varchar (255);
+alter table sprints add column start_date date;
+alter table backlog add column user_id integer/int(11);
+alter table backlog add column start_date date;
+alter table backlog add column end_date date;
+
+    Alter table sprints so that column 'estimated_focus_factor' it's a decimal(2, 2).
+    Also execute migration 006.
+
+alter table comments add column comment_id integer;

@@ -1,0 +1,10 @@
+<%= error_messages_for 'comment' %>
+
+<!--[form:comment]-->
+
+<%= if @comment.comment then hidden_field_tag 'comment[comment_id]', @comment.comment.id end %>
+<p><label for="title">Title</label><br/>
+<%= text_field :comment, :title, :size => 30  %></p>
+<p><label for="text">Comment</label><br/>
+<%= text_area :comment, :text, :rows=>10, :cols=> 50  %></p>
+<!--[eoform:comment]-->

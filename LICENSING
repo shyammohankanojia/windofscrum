@@ -1,0 +1,18 @@
+******************
+* WINDS OF SCRUM *
+******************
+
+
+This is a Winds of Scrum release.
+
+Winds of Scrum is under the PPL, a "no military use" License.
+The project and its partecipants agree on this code of conduct: not to use the software for weapon's research.
+
+The PPL is a modified GPL license to prohibit military use (see PPL_license.txt). 
+However, this code is currently also licensed only under GPL due to sourceforge restrictions.
+
+DEPENDENCIES
+============
+Apart from ruby on rails and the referenced gems this application also uses this software:
+- For generating flash charts:
+    OpenFlashChart-2 (LGPL) -> http://teethgrinder.co.uk/open-flash-chart-2/

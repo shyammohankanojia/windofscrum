@@ -1,0 +1,35 @@
+<h1>Listing sprints for project:
+  <% project = Project.find(params[:project_id]) %>
+  <em><%= link_to project.name, project_path(project) %> </em>
+</h1>
+
+<table>
+  <tr>
+    <% for column in Sprint.content_columns %>
+      <th><%= column.human_name %></th>
+    <% end %>
+    <th>Total story-points</th>
+  </tr>
+  
+<% for sprint in @sprints %>
+    <tr>
+      <% for column in Sprint.content_columns %>
+        <td><%=h sprint.send(column.name) %></td>
+      <% end %>
+      <td>
+        <%
+        story_points= 0
+        Story.find(:all, :conditions => ["sprint_id = ?", sprint.id]).each{ |s|
+            sprint_initial_estimate= s.initial_estimate ? s.initial_estimate : 0
+             story_points += sprint_initial_estimate
+        } %>
+        <%=h story_points %>
+      </td>
+      <td><%= link_to 'Show', :action => 'show', :id => sprint %></td>
+      <td><%= link_to 'Edit', :action => 'edit', :id => sprint %></td>
+      <td><%= link_to 'Destroy', sprint_path(sprint), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New sprint', :action => 'new' %>

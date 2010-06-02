@@ -1,0 +1,81 @@
+******************
+* WINDS OF SCRUM *
+******************
+
+
+This is a Winds of Scrum ALPHA release.
+Although this application is still under development it is already usable as a normal Rails application.
+
+INSTALLATION AND CONFIGURATION
+==============================
+
+During this installation reference the environment variable $WINDSOFSCRUM_HOME refers to the directory where Winds of Scrum is. For example: /home/oliver/prog/ruby/projects/windsofscrum
+
+Installing Dependencies
+-----------------------
+The following list of gems is required:
+* authlogic
+	sudo gem install authlogic
+
+* mysql (if using mysql DBMS)
+  # On Ubuntu:
+	sudo apt-get install libmysqlclient-dev ;(possibly)
+	sudo gem install mysql
+  # On MacOS X:
+	gem install mysql -- --include=/usr/local/lib
+  # On Windows:
+	gem install mysql
+	  Choose the win32 build.
+	  Install MySQL and put its /bin directory on your path.
+
+* postgres (if using postgresql DBMS)
+	sudo gem install postgres
+
+Remember that drivers like postgres and mysql require to have ruby development libraries installed:
+sudo apt-get install ruby1.8-dev
+
+Configuring Database
+--------------------
+Assuming the correct gems have been installed to connect to your DBMS, $WINDSOFSCRUM_HOME/config/database.yml will probably need to be configured according to your database configuration.
+To do so, use the database.yml.template. For example:
+    WINDSOFSCRUM_HOME> cp config/database.yml.template config/database.yml
+
+On the database configuration there's a section for each execution environment that must be configured.
+* adapter: is the driver to use for connecting to the database, for example the mysql or postgresql.
+* encodig: Forces the encoding of the connection to be made in UTF-8.
+* database: the database name on the DBMS.
+* username: the username to use for connecting to the db.
+* password: the passwor of 'username'.
+* host: don't connect through socket (for those using jruby).
+
+For production only the production section must be parameterized.
+By default this project is configured to run on a mysql DBMS.
+It uses a 'windsofscrum' schema for development and production as this environments doesn't use to be executed on the same machine.
+
+- Useful configuration sentences for PostgreSQL:
+CREATE DATABASE windsofscrum WITH ENCODING='UTF8';
+CREATE USER pig WITH PASSWORD '4F0s8wj';
+-- ALTER Role pig CREATEDB;
+-- GRANT ALL PRIVILEGES ON DATABASE windsofscrum TO pig;
+
+- Configuration for MySql:
+CREATE DATABASE windsofscrum CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE USER 'pig' IDENTIFIED BY '4F0s8wj';
+CREATE USER 'pig'@'localhost' IDENTIFIED BY '4F0s8wj';
+GRANT ALL PRIVILEGES ON windsofscrum.* TO pig@localhost;
+
+- Creating tables
+	Simply from your $WINDSOFSCRUM_HOME execute the command:
+
+$ rake db:migrate
+
+
+USERS
+=====
+    By default an administrator user is added to the DB.
+login:  admin
+pwd:    songoku
+
+    Remember to update administrator's password just after deploying the app.
+    It is not that this "administrator" user will have more permissions or privileges over new users but it's called like this as a convention.
+

@@ -1,0 +1,28 @@
+<%= error_messages_for 'sprint' %>
+
+<!--[form:sprint]-->
+<p><label for="sprint_name">Name</label><br/>
+<%= text_field 'sprint', 'name', :size => 50 %></p>
+
+<p><label
+    for="sprint_project_id">Belongs to project</label><br/>
+  <%= select("sprint", "project_id", Project.find(:all).collect{|p| [p.name, p.id] }) %>
+</p>
+
+<p><label for="sprint_start_date">Start date</label><br/>
+<%= date_select 'sprint', 'start_date'  %></p>
+
+<p><label for="sprint_release_date">Release date</label><br/>
+<%= date_select 'sprint', 'release_date'  %></p>
+
+<p><label for="estimated_focus_factor">Estimated focus factor</label><br/>
+<%= text_field 'sprint', 'estimated_focus_factor'  %> [1,0]</p>
+
+<p><label for="available_man_days">Available man-days</label><br/>
+<%= text_field 'sprint', 'available_man_days'  %></p>
+
+<p><label for="finished">Finished</label><br />
+<%= check_box 'sprint', 'finished' %></p>
+
+<!--[eoform:sprint]-->
+

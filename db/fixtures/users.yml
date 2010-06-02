@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+admin:
+#  id: 1
+  name: Administrator
+  email: admin@mail.com
+  login: admin
+  crypted_password: 7b64902033e017002f6df8efebdcb0e684bdc305f6f2c654f13e712733b5b6eeefc2ef52476dd976c574061a256b1ead0504b4e249313e21f4eef248cb8dea5d
+  password_salt: tG9fBVJCXQmKyGnKkhbc
+  persistence_token: 782f0fefc271f1a29238ea4153462d447ab8d47316cb33f82e6ff6cf039b56b9eceeb5d57947b0ad9b06e29dbebd6e69047b4cf9765dd7061e62c80dd960bacd
+  single_access_token: Bo4i9wgiaWJz2zXD-qNh
+  perishable_token: 3CFWy7yjvGr6KGSsCkWI
+  role: ADMIN

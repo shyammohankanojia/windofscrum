@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+windsofscrum:
+  id: 1
+  name: Winds of Scrum
+autoronda:
+  id: 2
+  name: Autoronda
+  

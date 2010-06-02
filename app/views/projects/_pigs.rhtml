@@ -1,0 +1,31 @@
+<fieldset>
+<legend>Pigs</legend>
+<span>The Pigs are the ones committed to the project in the Scrum process - they are the ones with "their bacon on the line."</span>
+<p><label for="project_product_owner">Product owner:</label>
+  <%= select_tag('project[product_owner]', options_for_select(available_users, @actual_product_owner), :disabled => disabled) %>
+<a href="#" onclick="$('product_owner_help').toggle()">?</a>
+<span id="product_owner_help" style="display:none" class="help">
+  <i>Product Owner:</i> The Product Owner represents the voice of the customer.
+  He/she ensures that the Scrum Team works with the "right things" from a business perspective.
+  The Product Owner writes customer-centric items (typically user stories), prioritizes them and then places them in the product backlog.
+</span>
+</p>
+<p><label for="project_scrum_master">Scrum master:</label>
+<%= select_tag('project[scrum_master]', options_for_select(available_users, @actual_scrum_master), :disabled => disabled) %>
+<a href="#" onclick="$('scrum_master_help').toggle()">?</a>
+<span id="scrum_master_help" style="display:none" class="help">
+  <i>Scrum Master:</i> Scrum is facilitated by a ScrumMaster, whose primary job is to remove impediments to the ability of the team to deliver the sprint goal.
+  The ScrumMaster is not the leader of the team (as the team is self-organizing) but acts as a buffer between the team and any distracting influences.
+  The ScrumMaster ensures that the Scrum process is used as intended. The ScrumMaster is the enforcer of rules.
+  A key part of the ScrumMaster's role is to protect the team and keep them focused on the tasks in hand.
+</span>
+</p>
+<p><label for="project_team">Team:</label>
+  <%= select_tag('project[team][]', options_for_select(available_users, @actual_team), {:multiple=>'multiple', :size=>[available_users.size, 8].min, :disabled=>disabled}) %>
+<a href="#" onclick="$('team_help').toggle()">?</a>
+<span id="team_help" style="display:none" class="help">
+  <i>Team:</i> The team has the responsibility to deliver the product.
+  A team is typically made up of 5–9 people with cross-functional skills who do the actual work (design, develop, test, technical communication, etc.).
+</span>
+</p>
+</fieldset>

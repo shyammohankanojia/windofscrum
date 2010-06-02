@@ -1,0 +1,65 @@
+<p>
+  <b>Parent project:</b> <%=h @sprint.project.name %>
+</p>
+<div style="float:left;width:40%">
+<% for column in Sprint.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @sprint.send(column.name) %>
+</p>
+<% end %>
+
+
+<h2>Planification</h2>
+<% if (@sprint.can_estimate_velocity) %>
+<p>
+  <b>Available man days:</b> <%= @sprint.available_man_days %>
+</p>
+<p>
+  <b>Estimated focus factor:</b> <%= @sprint.estimated_focus_factor %>
+</p>
+<p>
+  <b>Estimated velocity:</b> <%= @sprint.estimate_velocity %>
+</p>
+<% end %>
+
+<% if (@sprint.finished) %>
+<h2>Achieved</h2>
+<p>
+  <b>Actual velocity:</b> <%= @sprint.actual_velocity %>
+</p>
+<p>
+  <b>Focus factor:</b> <%= @sprint.focus_factor %>
+</p>
+
+<% end %>
+</div>
+
+<% if ( @sprint.start_date and (@sprint.start_date < Time.new.to_date) ) %>
+  <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+  <script type="text/javascript">
+  swfobject.embedSWF("/open-flash-chart.swf", "progress_chart", "500", "100", "9.0.0","expressInstall.swf",
+    {"data-file":"<%= sprint_progress_path @sprint  %>"}
+  );
+  swfobject.embedSWF("/open-flash-chart.swf", "burndown_chart", "500", "350", "9.0.0","expressInstall.swf",
+    {"data-file":"<%= sprint_burndown_path @sprint  %>"}
+  );
+  </script>
+  <div style="float:left;margin:10px">
+    <h2>Progress</h2>
+    <div id="progress_chart"></div>
+    <h2>Burndown chart</h2>
+    <div id="burndown_chart"></div>
+  </div>
+<%  end %>
+<div style="clear:both;">
+
+<%= link_to 'Show sprint backlog', sprint_backlog_url(@sprint) %>
+|
+<%= link_to 'Show sprint assignations', sprint_assignations_path(@sprint) %>
+|
+<%= link_to 'Update Estimated focus factor', {:action => 'update_estimated_focus_factor', :id => @sprint}, :method => :post %>
+|
+<%= link_to 'Edit', edit_sprint_url(@sprint) %>
+|
+<%= link_to 'Sprints', project_sprints_url(@sprint.project) %>
+</div>

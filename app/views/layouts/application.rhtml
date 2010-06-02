@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <title>=Winds=Of=Scrum=</title>
+  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag 'scaffold', 'principal' %>
+</head>
+<body>
+
+    <div id="page">
+      <div id="content">
+        <div id="header">
+          <div class="logo"><img border="0" src="/images/windsofscrum_logo.png"/></div>
+        </div>
+        <div id="main_menu">
+          <% if !current_user %>
+            <%= link_to "Log In", new_user_session_path %> |
+          <% else %>
+            User: <%= current_user.name  %> |
+            <%= link_to "Menu", '/menu' %> |
+            <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+          <% end %>
+        </div>
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield  %>
+
+      <div id="footer">&nbsp;</div>
+      </div>
+    </div>
+
+</body>
+</html>

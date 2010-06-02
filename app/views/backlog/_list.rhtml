@@ -1,0 +1,27 @@
+<%# Caller's helper must define 'show_story_path', 'edit_story_path' and 'delete_story_path' methods. %>
+
+<table>
+ <caption>Estimated days: <%= compute_estimated_days backlog %> </caption>
+ <thead>
+  <tr>
+      <th>Name</th>
+      <th>Importance</th>
+      <th>Initial estimate</th>
+      <th>How to demo</th>
+      <th>Notes</th>
+      <th>Start date</th>
+      <th>Finished</th>
+  </tr>
+ </thead>
+ <tbody>
+<% for story in backlog %>
+    <tr class="<%= if (story.finished)
+        'finished' else 'pending' end %>">
+      <%= story_row(story, actions) %>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td><td></td><td><%= compute_estimated_days backlog %></td>
+  </tr>
+ </tbody>
+</table>

@@ -1,0 +1,9 @@
+<h1>Editing sprint</h1>
+
+<% form_tag sprint_url(@sprint), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Update' %>
+<% end %>
+
+<%= link_to 'Show', sprint_url(@sprint) %> |
+<%= link_to 'Sprints', project_sprints_url(@sprint.project) %>

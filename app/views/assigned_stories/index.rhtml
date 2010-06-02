@@ -1,0 +1,133 @@
+<style type="text/css">
+  li.sprint_story_line:hover { background-color: yellow; }
+  </style>
+<% def get_story_element_id(storyState, story) "#{storyState}_#{story.id}" end %>
+
+<script type="text/javascript">
+    function addOrdered(ol, li)
+    {
+          var children= ol.getElementsByTagName("LI")
+          var a= new Array(children.length + 1)
+          for (var i= 0; children.length>0; i++) {
+            a[i]= ol.removeChild(children[0])
+          }
+          a[a.length-1]= li
+          a.sort(liComparator)
+          for (var j= 0; j<a.length; j++) {
+            ol.appendChild(a[j])
+          }
+    }
+    function liComparator(li1, li2)
+    {
+        return li2.value - li1.value
+    }
+    function parseStoryId(storyId)
+    {
+      var splitTokenPosition= storyId.indexOf('_')
+      return storyId.substr(splitTokenPosition + 1)
+    }
+  //
+  // Story assignation
+  //
+  function assign_story(story, sprint)
+  {
+    var story_id= parseStoryId(story.id)
+    var splitTokenPosition= sprint.id.indexOf('_')
+    var sprint_id= sprint.id.substr(splitTokenPosition + 1)
+    //assign_story
+    new Ajax.Request('/sprints/'+sprint_id+'/backlog?id='+story_id , {
+        method:'post',
+        onSuccess: function() {
+          story.id= story.id.replace(/unassigned_/, "assigned_")
+          story.className= "sprint_story_line"
+          //remove from project_backlog
+          story.parentNode.removeChild(story)
+          //add_to_sprint_backlog
+          addOrdered(sprint.getElementsByTagName("OL")[0], story)
+          //alert("Story has been successfuly assigned.")
+        },
+        onFailure: function() {alert("Story assignation has failed!")}
+      })
+  }
+  </script>
+
+<h1><%= @project.name %> Backlog</h1>
+
+<table>
+<tbody>
+<tr><td id="project_backlog"><div>
+    <h3>Backlog</h3>
+    <ol id="backlog">
+      <% for story in @assigned_stories.delete(nil) %>
+        <li id="<%= get_story_element_id('unassigned', story) %>" 
+            value="<%= story.importance %>"
+            class="project_story_line" >
+        <%= story.name %>
+        <script type="text/javascript">
+          new Draggable("<%= get_story_element_id('unassigned', story) %>", {revert:true})
+        </script>
+        </li>
+<% end %>
+    </ol>
+</div></td>
+<td><div>
+<h3>Sprint Backlogs</h3>
+<ol>
+<% @assigned_stories.each_key { |sprint|%>
+  <li id="sprint_<%= sprint.id %>" sprint="<%= sprint.id %>"><%= sprint.name %>(<%= sprint.release_date %>)
+      <script type="text/javascript">
+        Droppables.add('sprint_<%= sprint.id %>',{accept:'project_story_line',
+          onDrop: assign_story
+        })
+    </script>
+    <ol>
+      <% @assigned_stories[sprint].each { |story| %>
+        <li id="<%= get_story_element_id('assigned', story) %>" 
+            value="<%= story.importance %>"
+            class="sprint_story_line">
+          <%= story.name %>
+          <script type="text/javascript">
+            new Draggable("<%= get_story_element_id('assigned', story) %>", {revert:true})
+          </script>
+        </li>
+      <% } %>
+    </ol>
+  </li>
+<%  } %>
+</ol>
+</div></td></tr>
+</tbody>
+</table>
+
+<script type="text/javascript">
+  //
+  // Unassign stories
+  //
+  Droppables.add('project_backlog', {accept:'sprint_story_line',
+    onDrop: function(story, droppable, event) {
+      var story_id= parseStoryId(story.id)
+      var sprint_id= story.up('li').readAttribute('sprint')
+      //unassign_story
+      new Ajax.Request('/sprints/'+sprint_id+'/backlog/'+story_id , {
+        method:'delete',
+        onSuccess: function() {
+          story.id= story_id.replace(/assigned/, "unassigned")
+          story.className= "project_story_line"
+          //remove from sprint_backlog
+          story.parentNode.removeChild(story)
+          //add_to_project_backlog
+          addOrdered($("backlog"), story)
+          //alert("Story has been successfuly unassigned.")
+        },
+        onFailure: function(transport) {alert("Failed to unassig story due to:"+transport.responseText)}
+      })
+    }
+  })
+  </script>
+
+<div id="drag_demo_1" style="width:100px; height:100px; background:#7baaed; border:1px solid #333;">
+  <%= link_to "Show '#{@project.name}'", project_url(@project) %>
+</div>
+<script type="text/javascript">
+  new Draggable('drag_demo_1');
+  </script>

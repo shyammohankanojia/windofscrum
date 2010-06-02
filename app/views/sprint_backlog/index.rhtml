@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag 'modalbox.css' %>
+<%= javascript_include_tag 'modalbox.js' %>
+<%= javascript_include_tag 'backlog.js' %>
+<script type="text/javascript">
+function moveToWorkingonit(draggable, droppable, event) {
+}
+
+function moveStory(storyItem, droppable) {
+    var url= storyItem.readAttribute('changeAction')
+
+    new Ajax.Request(url, {
+      parameters: {state:droppable.readAttribute('state')},
+      onSuccess: function(transport) {
+        // REMOVALS
+        // draggable
+        storyItem.remove()
+        // droppables
+        var tr= droppable.up('tr')
+        $A(tr.cells).each(function(td){
+          var div= td.down('div')
+          if (!Object.isUndefined(div)) {
+            Droppables.remove(droppable);
+          }
+        });
+
+        // insert
+        tr.replace(transport.responseText)
+      },
+      onFailure: showTransportError
+    })
+}
+</script>
+<h1>Listing backlog for sprint:
+  <em><%= link_to @sprint.name, sprint_path(@sprint) %></em>
+</h1>
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Importance</th>
+      <th width="30%">Pending</th>
+      <th width="30%">Working on it</th>
+      <th width="30%">Done</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @backlog.each { |story| %>
+      <%=  sprint_backlog_row story %>
+    <% } %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New story', "#{new_project_story_path(@sprint.project)}?sprint_id=#{@sprint.id}" %>

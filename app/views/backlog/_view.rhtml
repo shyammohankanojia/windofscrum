@@ -1,0 +1,41 @@
+<div style="width:45%;margin:5px;float:left;background-color:white;">
+<p>
+  <b>Importance:</b> <%=h @story.importance %>
+</p>
+
+<p>
+
+  <b>Initial estimate:</b> <%=h @story.initial_estimate %>
+</p>
+
+<p>
+  <b>How to demo:</b> <pre><%=h @story.how_to_demo %></pre>
+</p>
+
+<p>
+  <b>Notes:</b> <pre><%=h @story.notes %></pre>
+</p>
+
+<p>
+  <b>Finished:</b> <%=h @story.finished %>
+</p>
+</div>
+
+<% if (@story.sprint) %>
+<div style="width:45%;margin:5px;float:left;background-color:white;">
+<p>
+  <b>Assigned to sprint:</b> <%=h @story.sprint.name%>
+</p>
+<p>
+  <b>Assigned to user:</b> <% if (@story.user) %><%=h @story.user.name  %><% else %>Unassigned<% end %>
+
+</p>
+<p>
+  <b>Start date:</b> <%=h @story.start_date %>
+</p>
+<p>
+  <b>End date:</b> <%=h @story.end_date %>
+</p>
+</div>
+<% end %>
+<div style="clear:both;"></div>

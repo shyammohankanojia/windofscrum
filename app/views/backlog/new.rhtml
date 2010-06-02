@@ -1,0 +1,14 @@
+<h1>New Story for project:
+  <em><%= Project.find(params[:project_id]).name %></em>
+</h1>
+
+<%= error_messages_for :story %>
+
+<% form_for(:story, :url => project_backlog_path(params[:project_id])) do |f| %>
+  <%= render :partial => 'form' %>
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Backlog', project_backlog_path(params[:project_id]) %>

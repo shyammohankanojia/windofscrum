@@ -1,0 +1,17 @@
+<h1>Listing backlog for project:
+  <em><%= link_to Project.find(params[:project_id]).name, project_url(params[:project_id]) %></em>
+</h1>
+
+<%= list_backlog @backlog, [:show, :edit, :delete] %>
+
+<br />
+
+<% if (@unfinished) then %>
+    <%= link_to 'All stories', project_backlog_path(params[:project_id]) %>
+<% else %>
+    <%= link_to 'Only unfinished', "#{project_backlog_path(params[:project_id])}?finished=false" %>
+<% end %>
+|
+<%= link_to 'Assign stories to sprints', project_assigned_stories_path %>
+|
+<%= link_to 'New story', new_project_story_url(params[:project_id]) %>

@@ -1,0 +1,73 @@
+<h2>Story on '<%=h Project.find(@story.project_id).name %>' project.</h2>
+<%= error_messages_for 'story' %>
+
+<!--[form:story]-->
+<div style="width:45%;margin:5px;float:left;">
+
+<p><label for="story_name">Name</label><br/>
+<%= text_field 'story', 'name', :size => 30  %></p>
+
+<p><label for="story_importance">Importance</label><br/>
+<%= text_field 'story', 'importance'  %></p>
+
+<p><label for="story_initial_estimate">Initial estimate</label><br/>
+<%= text_field 'story', 'initial_estimate'  %></p>
+
+<p><label for="story_how_to_demo">How to demo</label><br/>
+<%= text_area 'story', 'how_to_demo'  %></p>
+
+<p><label for="story_notes">Notes</label><br/>
+<%= text_area 'story', 'notes'  %></p>
+
+<p><label for="finished">Finished</label><br />
+<%= check_box 'story', 'finished' %></p>
+</div>
+
+<% if (@story.sprint) %>
+<div style="width:45%;margin:5px;float:left;">
+<p>
+  <label for="story_sprint_id">Sprint:</label> <%=h @story.sprint.name %>
+  <%= hidden_field 'story', 'sprint_id' %>
+</p>
+<p>
+  <label for="story_user">Assigned to user:</label>
+  <% if (authz_to_update_story @story.project) %>
+    <%= select_tag('story[user_id]', options_for_select(available_users.merge({'-- Not assigned --'=>nil}), @story.user_id)) %>
+  <% else %>
+    <% if (@story.user_id) %>
+      <%= @story.user.name %>
+    <% else %>
+      Unassigned
+    <% end %>
+  <% end %>
+</p>
+<p>
+  <label for="story_start_date">Start date:</label>
+  <% if (@story.start_date) %>
+    <span id="story_start_date">
+    <%= date_select 'story', 'start_date'  %>
+    </span>
+  <% else %>
+    <span id="story_start_date" style="display:none;">
+    <%= date_select 'story', 'start_date', {:disabled=>true} %>
+    </span>
+    <a href="#" onclick="Event.stop(event);$('story_start_date').toggle();$('story_start_date').select('select').each(function(s){if(s.disabled){s.enable()}else{s.disable()}});$(this).remove()">(Set start date)</a>
+  <% end %>
+</p>
+<p>
+  <label for="story_end_date">End date:</label>
+  <% if (@story.end_date) %>
+   <span id="story_end_date">
+    <%= date_select 'story', 'end_date'  %>
+    </span>
+  <% else %>
+    <span id="story_end_date" style="display:none;">
+    <%= date_select 'story', 'end_date', {:disabled=>true} %>
+    </span>
+    <a href="#" onclick="Event.stop(event);$('story_end_date').toggle();$('story_end_date').select('select').each(function(s){if(s.disabled){s.enable()}else{s.disable()}});$(this).remove()">(Toggle end date)</a>
+  <% end %>
+</p>
+</div>
+<% end %>
+<div style="clear:both;"></div>
+<!--[eoform:story]-->

@@ -1,0 +1,7 @@
+<div style="background-color:white;">
+<h2>Story: <%=h @story.name %> on <%=h @story.project.name%> project.</h2>
+
+<%= render :partial => '/backlog/view', :object => @story %>
+
+<%= link_to 'Show', story_path(@story) %>
+</div>

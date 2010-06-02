@@ -1,0 +1,8 @@
+<h1>New sprint</h1>
+
+<% form_tag project_sprints_url(params[:project_id]), :method => :post do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Sprints', project_sprints_url(params[:project_id]) %>

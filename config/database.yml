@@ -1,0 +1,46 @@
+#
+# DATABASE CONFIGURATION
+# 
+development:
+  encoding: utf8
+  database: windsofscrum
+  username: pig
+  password: 4F0s8wj
+  pool: 5
+  # Postgres specific:
+  #adapter: postgresql
+  # MySql specific:
+  adapter: mysql
+  # JRuby specific. JRuby doesn't support socket:
+  #host: 127.0.0.1
+
+# Warning: The database defined as 'test' will be erased and
+# re-generated from your development database when you run 'rake'.
+# Do not set this db to the same as development or production.
+test:
+  encoding: utf8
+  database: windsofscrum_test
+  username: chicken
+  password: 4F0s8wj
+  pool: 5
+  # Postgres specific:
+  adapter: postgresql
+  # MySql specific:
+  #adapter: mysql
+  # JRuby specific. JRuby doesn't support socket:
+  #host: 127.0.0.1
+
+
+production:
+  encoding: utf8
+  database: windsofscrum
+  username: chicken
+  password: 4F0s8wj
+  pool: 5
+  # Postgres specific:
+  adapter: postgresql
+  # MySql specific:
+  #adapter: mysql
+  # JRuby specific. JRuby doesn't support socket:
+  #host: 127.0.0.1
+

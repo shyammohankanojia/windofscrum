@@ -1,0 +1,15 @@
+<h2>Story: <%=h @story.name %> on <%=h @story.project.name%> project.</h2>
+
+<%= render :partial => 'view', :object => @story %>
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Project backlog', project_backlog_path(@story.project) %> |
+<%=  link_to('Sprint backlog', sprint_backlog_path(@story.sprint)) if (@story.sprint) %>
+
+<hr></hr>
+
+<%= link_to 'Add a comment', new_story_comment_path(@story) %>
+
+<% for comment in @story.comments.find(:all, :conditions=>"comment_id is null") %>
+    <%= render :partial => 'comment', :locals => { :comment => comment, :story=>@story} %>
+<% end %>

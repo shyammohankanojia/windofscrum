@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+app_skeleton:
+ id: 1
+ project_id: 1
+ name: app_skeleton
+ start_date: <%= Time.parse("2009/07/27").to_s(:db) %>
+ release_date: <%= Time.parse("2009/08/31").to_s(:db) %>
+ available_man_days: 50
+ finished: false

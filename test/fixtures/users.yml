@@ -1,0 +1,53 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+oliver:
+  id: 1
+  name: oliver.hv
+  login: oliver
+  email: oliver.hv@tramuntana.com
+  role: ADMIN
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("oliver" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  login_count: 0
+  failed_login_count: 0
+crodella:
+  id: 2
+  name: Carles Rodella
+  login: crodella
+  email: crodella@tramuntana.com
+  role: USER
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("crodella" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  login_count: 0
+  failed_login_count: 0
+ferran:
+  id: 3
+  name: Ferran Parra
+  login: ferran
+  email: fparra@tramuntana.com
+  role: USER
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("fparra" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  login_count: 0
+  failed_login_count: 0
+marc:
+  id: 4
+  name: Marc Arumí
+  login: marc
+  email: marumi@tramuntana.com
+  role: USER
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("marumi" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  login_count: 0
+  failed_login_count: 0

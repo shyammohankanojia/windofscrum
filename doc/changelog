@@ -1,0 +1,25 @@
+Release: 0.9-RC-1 (20/01/2010)
+- Added favicon.
+- Make tests succeed.
+- Sprint backlog drag'n'drop stories.
+- Created a sprint progress chart shown at sprint.show view.
+- Show story information on a modalbox at sprint backlog.
+- Logo has been updated.
+- Backlog listings now show the sum of stories' initial_estimateds.
+- Bugfixes.
+
+Release: Alpha-3 (??/07/2009)
+- Renaming of some links.
+- Story.name made mandatory.
+- Corrected migration for Sprint.estimated_focus_factor so that it's a decimal(2,2)
+- Extracted project backlog list as a template (partial) to achieve DRY at sprint backlog.
+- Project will have assotiated scrum members.
+
+Release: Alpha-2 (22/06/2009)
+- New licensing model: GPL or PPL.
+- A user centric menu view has been created so that she can access projects and its account.
+- New user registration views are accessed from the menu.
+- Corrected some redirections on login/logout.
+- /doc/README_FOR_APP -> /README	
+- Database documentation on README, and configuration on database.yml updated.
+

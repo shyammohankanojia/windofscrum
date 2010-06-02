@@ -1,0 +1,56 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+create_slide:
+  id: 1
+  project_id: 1
+  sprint_id: 1
+  name: Create slide
+  importance: 100
+  initial_estimate: 15
+  how_to_demo: Start application and get a welcome screen with information from the DB.
+  start_date:  <%= Time.parse("2009/08/15").to_s(:db) %>
+  end_date: <%= Time.parse("2009/08/31").to_s(:db) %>
+  finished: true
+slide_performance:
+  id: 2
+  project_id: 1
+  sprint_id: 1
+  name: Slide performance
+  importance: 90
+  initial_estimate: 2
+  how_to_demo: Execute a benchmark with 1000 requests per second with correct server performance.
+  notes: Assure there is no caching!
+  start_date:  <%= Time.parse("2009/07/28").to_s(:db) %>
+  end_date: <%= Time.parse("2009/08/15").to_s(:db) %>
+  finished: true
+non_estimated:
+  id: 3
+  project_id: 1
+  sprint_id: 1
+  name: Non estimated story
+  importance: 1
+  start_date:  <%= Time.parse("2009/07/27").to_s(:db) %>
+  end_date: <%= Time.parse("2009/07/27").to_s(:db) %>
+  finished: true
+unfinished:
+  id: 4
+  project_id: 1
+  sprint_id: 1
+  name: Unfinished story
+  importance: 2
+  initial_estimate: 10
+  finished: false
+unassigned:
+  id: 5
+  project_id: 1
+  name: Unassigned story
+  importance: 3
+  initial_estimate: 10
+  finished: false
+workingonit:
+  id: 6
+  project_id: 1
+  name: Unassigned story but working on it (not possible!!!)
+  importance: 4
+  initial_estimate: 10
+  finished: false
+  user_id: 1

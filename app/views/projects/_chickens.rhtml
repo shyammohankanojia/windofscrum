@@ -1,0 +1,28 @@
+<fieldset>
+<legend>Chickens</legend>
+<span>Chicken roles are not part of the actual Scrum process, but must be taken into account.
+An important aspect of an Agile approach is the practice of involving users, internal business groups and stakeholders into portions of the process.
+It is important for these people to be engaged in the outcome of the project by providing feedback into the development, its review and planning for each sprint.</span>
+<p><label for="users">Users:</label><br />
+<%= text_field 'project', 'users', :size => 80, :disabled => disabled  %>
+<a href="#" onclick="$('users_help').toggle()">?</a>
+<span id="users_help" style="display:none" class="help">
+    <i>Users:</i> People the software is being built for.
+</span>
+</p>
+<p><label for="stakeholders">Stakeholders:</label><br />
+<%= text_field 'project', 'stakeholders', :size => 80, :disabled => disabled  %>
+<a href="#" onclick="$('stakeholders_help').toggle()">?</a>
+<span id="stakeholders_help" style="display:none" class="help">
+    <i>Stakeholders:</i> These are the people who enable the project and for whom the project will produce the agreed-upon benefit[s], which justify its production.
+    They are only directly involved in the process during the sprint reviews.
+</span>
+</p>
+<p><label for="Managers">Managers:</label><br />
+<%= text_field 'project', 'managers', :size => 80, :disabled => disabled  %>
+<a href="#" onclick="$('managers_help').toggle()">?</a>
+<span id="managers_help" style="display:none" class="help">
+    <i>Managers:</i> People who will set up the environment for the product development organizations.
+</span>
+</p>
+</fieldset>

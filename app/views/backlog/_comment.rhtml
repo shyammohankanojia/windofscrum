@@ -1,0 +1,13 @@
+<fieldset>
+  <legend><b><%= comment.title %></b> <%= "(Posted by #{comment.user_name} on #{comment.creation_date.ctime})"%></legend>
+  <label>Comment:</label>
+  <!--
+  <textarea readonly="readonly" rows="10" cols="80"><%= comment.text %> </textarea>
+  -->
+  <pre><%= comment.text %></pre>
+  <%= link_to "Reply '#{comment.title}'", "#{new_story_comment_path(story)}?reply_to=#{comment.id}" %>
+
+<% for reply in comment.replies %>
+    <%= render :partial => 'comment', :locals => { :comment => reply, :story=> story} %>
+<% end %>
+</fieldset>

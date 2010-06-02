@@ -1,0 +1,126 @@
+/* 
+Document   : principal
+Created on : 06/08/2008, 18:36:57
+Author     : oriberu
+Description:
+Main stylesheet for the Scrum application.
+*/
+
+root { 
+    display: block;
+}
+
+table  {
+    border: 1px black solid;
+}
+
+th {
+    border: 1px black solid;
+}
+
+td {
+    border: 1px black solid;
+}
+
+.finished {
+    background-color: green;
+    color:white;
+}
+
+.pending {
+    background-color: orange;
+}
+
+
+/*
+ * CUSTOM STYLES 
+ */
+body {
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+  background-color: #f0f0f0;
+  font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+  font-size: 13px;
+  color: #333;
+}
+      
+#page {
+    background-color: #f0f0f0;
+    width: 1024px;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content {
+    background-color: white;
+    border: 3px solid #aaa;
+    border-top: none;
+  padding: 5px;
+  margin: 0
+}
+
+#footer {
+  clear: both;
+}
+
+
+#header {
+    background-color: #F0F0F0;
+/*    width: 412px;
+    height: 76px;
+*/    background-image: url("/images/windsofscrum_name.png");
+    background-attachment:scroll;
+    background-repeat: no-repeat;
+    background-position: center top;
+    margin: 5px;
+    height: 64px;
+}
+#header h1 {
+  padding-top: 5px;
+  text-align: center;    
+}
+div.logo {
+    float:right;
+}
+#main_menu {
+    background-color: #F0F0F0;
+    margin: 5px;
+}
+
+
+/*
+ * Forms
+ */
+input, select, textarea {
+    font: 11px verdana, arial, helvetica, sans-serif;
+}
+select {
+   padding: 2px 2px 2px 0;
+}
+textarea {
+        width: 250px;
+        height: 150px;
+        vertical-align: top;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 2px solid;
+}
+
+.help {
+    color: blue;
+}
+
+.project_story_line, .sprint_story_line {
+    cursor:pointer
+}
+
+.draggable {
+  cursor:pointer;    
+}
+
+.droppable_hovered {
+    border-style:dashed;
+}

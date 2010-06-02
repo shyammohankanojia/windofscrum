@@ -1,0 +1,39 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+windsofscrum_o:
+  project_id: 1
+  #windsofscrum
+  user_id: 2
+  #crodella
+  role: PRODUCT_OWNER
+windsofscrum_m:
+  project_id: 1
+  #windsofscrum
+  user_id: 1
+  #oliver
+  role: SCRUM_MASTER
+windsofscrum_t1:
+  project_id: 1
+  #windsofscrum
+  user_id: 1
+  #oliver
+  role: TEAM
+windsofscrum_t2:
+  project_id: 1
+  #windsofscrum
+  user_id: 2
+  #crodella
+  role: TEAM
+
+autoronda_o:
+  project_id: 2
+  #autoronda
+  user_id: 4
+  #marc
+  role: PRODUCT_OWNER
+autoronda_t1:
+  project_id: 2
+  #autoronda
+  user_id: 3
+  #ferran
+  role: TEAM

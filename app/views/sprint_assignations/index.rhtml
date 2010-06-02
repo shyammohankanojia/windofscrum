@@ -1,0 +1,17 @@
+<%= javascript_include_tag 'backlog.js' %>
+
+<h1>Listing backlog for sprint:
+  <em><%= link_to @sprint.name, sprint_path(@sprint) %></em>
+</h1>
+
+<%= list_backlog(@backlog, [:show, :unassign]) %>
+
+<br />
+<% if (@next) %>
+  <label>Next story by priority:</label> <%= @next.name %> (importance = <%= @next.importance %> / estimate = <%= @next.initial_estimate %>)
+  <%= link_to 'Assign to this sprint', "#{sprint_assignations_path(@sprint)}?id=#{@next.id}", :method => :post %>
+<% end %>
+
+<br />
+
+<%= link_to 'New story', "#{new_project_story_path(@sprint.project)}?sprint_id=#{@sprint.id}" %>

@@ -1,0 +1,16 @@
+<p>
+  <b>Name:</b> <%=h @project.name %>
+</p>
+
+<%= pigs(true) %>
+<%= chickens(true) %>
+
+<%= link_to 'New sprint', new_project_sprint_url(@project) %>
+|
+<%= link_to 'Show related sprints', project_sprints_url(@project) %>
+|
+<%= link_to 'Show backlog', "#{project_backlog_url(@project)}?finished=false" %>
+|
+<%= link_to 'Edit', :action => 'edit', :id => @project %>
+|
+<%= link_to 'Projects', :action => 'index' %>
